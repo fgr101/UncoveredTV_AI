@@ -3,18 +3,14 @@ let currentChannelIndex = 0;
 
 // Lista de fuentes animadas con sus duraciones exactas en segundos
 const fuentesAnimadas = [
-
   { id: "AMq-HkKA7s0", duracionTotal: 4401 },
   { id: "5PEpenrJbdo", duracionTotal: 9211 },
   { id: "vXz2bt8NPTE", duracionTotal: 3826 },
-  { id: "bk_g8zadLd8", duracionTotal: 13621},
-  { id: "lQnMBKcBDbs&t=74s", duracionTotal: 1327},
-  { id: "j9_uXGNky1A", duracionTotal: 11313},
-  { id: "U2oliAFLDwU", duracionTotal: 3636},
-  { id: "3ZnC4DTshc4", duracionTotal: 2215}
-  
-  
-
+  { id: "bk_g8zadLd8", duracionTotal: 13621 },
+  { id: "lQnMBKcBDbs&t=74s", duracionTotal: 1327 },
+  { id: "j9_uXGNky1A", duracionTotal: 11313 },
+  { id: "U2oliAFLDwU", duracionTotal: 3636 },
+  { id: "3ZnC4DTshc4", duracionTotal: 2215 }
 ];
 
 // Memoria para el canal aleatorio
@@ -32,18 +28,13 @@ const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 
 // Cargar la API de YouTube de forma dinámica si no está cargada
-
 function loadYouTubeAPI() {
-	
   if (!window.YT) {
-    
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  
   }
-
 }
 
 // Esta función la llama automáticamente YouTube cuando la API está lista
@@ -52,7 +43,6 @@ window.onYouTubeIframeAPIReady = function() {
 };
 
 function initPlayer() {
-  
   if (channels.length === 0) return;
   const targetChannel = channels[currentChannelIndex];
   let videoId = targetChannel.id;
@@ -61,15 +51,12 @@ function initPlayer() {
   isToonsActive = (targetChannel.id === "TOONS_RANDOM");
 
   if (isToonsActive) {
-    
     const ahora = Date.now();
     
     if (!toonsActiveVideo) {
-    
       toonsActiveVideo = fuentesAnimadas[Math.floor(Math.random() * fuentesAnimadas.length)];
       toonsBaseSecond = Math.floor(Math.random() * toonsActiveVideo.duracionTotal);
       toonsStartTime = ahora;
-    
     }
 
     const segundosTranscurridos = Math.floor((ahora - toonsStartTime) / 1000);
@@ -90,7 +77,7 @@ function initPlayer() {
       startSeconds: startSec
     });
   } else {
-    // Creamos el reproductor por primera vez en el div/iframe "tv-player"
+    // Creamos el reproductor por primera vez con los controles ocultos y limpios
     ytPlayer = new YT.Player('tv-player', {
       height: '100%',
       width: '100%',
@@ -99,13 +86,16 @@ function initPlayer() {
         'autoplay': 1,
         'enablejsapi': 1,
         'start': startSec,
-        'controls': 0,          // <--- CAMBIAR ESTO: de 1 a 0 (oculta los controles)
-        'disablekb': 1,         // <--- AGREGAR ESTO: desactiva atajos de teclado en el video
-        'modestbranding': 1,    // <--- AGREGAR ESTO: minimiza el logo de YouTube
-        'iv_load_policy': 3,    // <--- AGREGAR ESTO: oculta anotaciones e info interactiva
+        'controls': 0,        // Oculta los controles de YouTube
+        'disablekb': 1,       // Desactiva atajos de teclado en el video
+        'modestbranding': 1,  // Minimiza el logo de YouTube
+        'iv_load_policy': 3,  // Oculta anotaciones
         'rel': 0
       },
       events: {
+        'onReady': (event) => {
+          event.target.playVideo();
+        },
         'onStateChange': onPlayerStateChange
       }
     });
