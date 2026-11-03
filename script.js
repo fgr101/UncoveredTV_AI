@@ -8,7 +8,12 @@ const fuentesAnimadas = [
   { id: "5PEpenrJbdo", duracionTotal: 9211 },
   { id: "vXz2bt8NPTE", duracionTotal: 3826 },
   { id: "bk_g8zadLd8", duracionTotal: 13621},
-  { id: "lQnMBKcBDbs&t=74s", duracionTotal: 1327}
+  { id: "lQnMBKcBDbs&t=74s", duracionTotal: 1327},
+  { id: "j9_uXGNky1A", duracionTotal: 11313},
+  { id: "U2oliAFLDwU", duracionTotal: 3636},
+  { id: "3ZnC4DTshc4", duracionTotal: 2215}
+  
+  
 
 ];
 
