@@ -1,0 +1,136 @@
+/* Estilos generales */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Contenedor principal de la televisión */
+.tv-container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    align-items: start;
+}
+
+/* Columna Izquierda */
+.tv-left-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Reproductor de YouTube */
+#tv-player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#tv-player iframe {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+/* Información del canal */
+.tv-info {
+    margin-top: 15px;
+}
+
+.tv-info h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.tv-info p {
+    margin: 0;
+    color: #aaaaaa;
+    font-size: 0.9rem;
+}
+
+/* Columna Derecha (Lista + Botones abajo) */
+.tv-right-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* Lista de canales */
+#channel-list-container {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    max-height: 480px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.channel-btn {
+    width: 100%;
+    text-align: left;
+    background-color: #2a2a2a;
+    color: #ccc;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.channel-btn:hover {
+    background-color: #383838;
+    color: #fff;
+}
+
+.channel-btn.active {
+    background-color: #4f46e5;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Botones CH+ y CH- abajo a la derecha */
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+.controls button {
+    flex: 1;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.controls button:hover {
+    background-color: #383838;
+}
