@@ -32,13 +32,18 @@ const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 
 // Cargar la API de YouTube de forma dinámica si no está cargada
+
 function loadYouTubeAPI() {
+	
   if (!window.YT) {
+    
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
   }
+
 }
 
 // Esta función la llama automáticamente YouTube cuando la API está lista
@@ -47,6 +52,7 @@ window.onYouTubeIframeAPIReady = function() {
 };
 
 function initPlayer() {
+  
   if (channels.length === 0) return;
   const targetChannel = channels[currentChannelIndex];
   let videoId = targetChannel.id;
@@ -55,11 +61,15 @@ function initPlayer() {
   isToonsActive = (targetChannel.id === "TOONS_RANDOM");
 
   if (isToonsActive) {
+    
     const ahora = Date.now();
+    
     if (!toonsActiveVideo) {
+    
       toonsActiveVideo = fuentesAnimadas[Math.floor(Math.random() * fuentesAnimadas.length)];
       toonsBaseSecond = Math.floor(Math.random() * toonsActiveVideo.duracionTotal);
       toonsStartTime = ahora;
+    
     }
 
     const segundosTranscurridos = Math.floor((ahora - toonsStartTime) / 1000);
@@ -89,6 +99,10 @@ function initPlayer() {
         'autoplay': 1,
         'enablejsapi': 1,
         'start': startSec,
+        'controls': 0,          // <--- CAMBIAR ESTO: de 1 a 0 (oculta los controles)
+        'disablekb': 1,         // <--- AGREGAR ESTO: desactiva atajos de teclado en el video
+        'modestbranding': 1,    // <--- AGREGAR ESTO: minimiza el logo de YouTube
+        'iv_load_policy': 3,    // <--- AGREGAR ESTO: oculta anotaciones e info interactiva
         'controls': 1,
         'rel': 0
       },
