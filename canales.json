@@ -15,53 +15,23 @@
     "desc": "Noticias y cobertura en vivo"
   },
   {
-    "id": "PHHWKYxEG6c",
-    "name": "Canal 3: El Destape",
-    "desc": "Periodismo e información en vivo"
-  },
-  {
-    "id": "_tAunHbHKGA",
-    "name": "Canal 4: TV 247 (Brasil)",
-    "desc": "Jornalismo e notícias ao vivo do Brasil"
-  },
-  {
     "id": "zx9lNsN4YNs",
-    "name": "Canal 5: Canal 22",
+    "name": "Canal 3: Canal 22",
     "desc": "Transmisión en vivo de Canal 22. Primer canal de televisión de internet de la Argentina."
   },
   {
     "id": "21UP3XoRIBU",
-    "name": "Canal 6: AR|12",
+    "name": "Canal 4: AR|12",
     "desc": "Argentina 12, canal de noticias y periodismo con opinión de Página 12."
-  },
-  {
-    "id": "edP60wPIUgg",
-    "name": "Canal 7: +Perfil",
-    "desc": "Editorial Perfil estrena su nuevo canal, +Perfil, y Modo Fontevecchia sigue siendo parte de tus mañanas."
-  },
-  {	  
-    "id": "HJyP4r_Y-iE",
-    "name": "Canal 8: Radio con Vos",
-    "desc": "Radio con Vos es una estación de radio argentina que transmite desde la Ciudad Autónoma de Buenos Aires. Comenzó a transmitir el 9 de marzo de 2015 bajo la licencia que pertenecía a Radio City (antes FM 89.90 y FM La Isla), propiedad de Afakot S.A. y Kuarzo Entertainment Argentina."
-  },
-  {	  
-    "id": "LxXd_7dlRks",
-    "name": "Canal 9: Rock and Pop",
-    "desc": "FM Rock & Pop 95.9 📻 La radio que hizo del rock una forma de vida. Más de 40 años al aire y seguimos igual de convencidos: el rock no es solo música, es una actitud. En Rock & Pop encontrás todo el universo del rock: Clásico, Rock de los 80, de los 90, de los 2000, Punk, Heavy, Indie, Blues, Emergentes... y los nuevos lanzamientos de los artistas consagrados. Una biblioteca enorme construida con pasión, no con algoritmos."
-  },
-  {	  
-    "id": "qDYuilEHO2E",
-    "name": "Canal 10: Gelatina",
-    "desc": "Gelatina es un medio de streaming independiente argentino, liderado por Pedro Rosemblat, que se sostiene por su comunidad."
   },
   {	  
     "id": "EYDd5U7fQXQ",
-    "name": "Canal 11: Reino Salvaje Y Noche De Pelea Animal 24/7",
+    "name": "Canal 5: Reino Salvaje Y Noche De Pelea Animal 24/7",
     "desc": "EN VIVO: Reino Salvaje Y Noche De Pelea Animal Livestream | Nat Geo en Español"
   },
   {	  
     "id": "rEKifG2XUZg",
-    "name": "Canal 13: Tom & Jerry in NY 24/7 [Inglés]",
+    "name": "Canal 6: Tom & Jerry in NY 24/7 [Inglés]",
     "desc": "TOM and JERRY in NY | 24 Hours of Tom & Jerry"
   }
 ]
