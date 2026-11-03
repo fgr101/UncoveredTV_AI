@@ -141,3 +141,19 @@ body {
 .ytp-endscreen-content {
     display: none !important;
 }
+
+/* Cartel de aviso sobre AdBlock / YouTube Premium */
+.tv-notice {
+    margin-top: 15px;
+    padding: 10px 14px;
+    background-color: #262626;
+    border-left: 4px solid #4f46e5; /* Detalle de color haciendo juego con el canal activo */
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #b0b0b0;
+    line-height: 1.4;
+}
+
+.tv-notice strong {
+    color: #ffffff;
+}
