@@ -135,3 +135,10 @@ body {
 .controls button:hover {
     background-color: #383838;
 }
+
+/* Oculta cualquier pantalla superpuesta o grilla de "More videos" que intente mostrar YouTube */
+
+.ytp-pause-overlay,
+.ytp-endscreen-content {
+  display: none !important;
+  }

@@ -92,7 +92,7 @@ function initPlayer() {
         'iv_load_policy': 3,  // Oculta anotaciones y elementos interactivos
         'showinfo': 0,        // Oculta información del video (según compatibilidad)
         'fs': 0,              // Oculta el botón de pantalla completa
-        'rel': 0
+        'rel': 0             // <--- ESTE ES CLAVE: Evita recomendaciones ajenas / "More videos"
       },
       events: {
         'onReady': (event) => {
