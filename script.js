@@ -103,7 +103,6 @@ function initPlayer() {
         'disablekb': 1,         // <--- AGREGAR ESTO: desactiva atajos de teclado en el video
         'modestbranding': 1,    // <--- AGREGAR ESTO: minimiza el logo de YouTube
         'iv_load_policy': 3,    // <--- AGREGAR ESTO: oculta anotaciones e info interactiva
-        'controls': 1,
         'rel': 0
       },
       events: {
