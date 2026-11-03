@@ -26,6 +26,7 @@ const channelDesc = document.getElementById("channel-desc");
 const channelListContainer = document.getElementById("channel-list-container");
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
+const tvPlayerElement = document.getElementById("tv-player"); // Contenedor del reproductor
 
 // Cargar la API de YouTube de forma dinámica si no está cargada
 function loadYouTubeAPI() {
@@ -92,7 +93,7 @@ function initPlayer() {
         'iv_load_policy': 3,  // Oculta anotaciones y elementos interactivos
         'showinfo': 0,        // Oculta información del video (según compatibilidad)
         'fs': 0,              // Oculta el botón de pantalla completa
-        'rel': 0             // <--- ESTE ES CLAVE: Evita recomendaciones ajenas / "More videos"
+        'rel': 0              // <--- ESTE ES CLAVE: Evita recomendaciones ajenas / "More videos"
       },
       events: {
         'onReady': (event) => {
@@ -179,11 +180,12 @@ function renderChannelList() {
 // Obtener datos desde el archivo externo JSON
 async function initApp() {
   try {
-    const response = await fetch("canales.json");
-    if (!response.ok) {
-      throw new Error(`Error al cargar canales: ${response.status}`);
+    const response = "canales.json";
+    const res = await fetch(response);
+    if (!res.ok) {
+      throw new Error(`Error al cargar canales: ${res.status}`);
     }
-    channels = await response.json();
+    channels = await res.json();
 
     if (channels.length > 0) {
       renderChannelList();
@@ -205,12 +207,24 @@ document.addEventListener("DOMContentLoaded", () => {
   btnNext.addEventListener("click", nextChannel);
   btnPrev.addEventListener("click", prevChannel);
 
-  // Zapping por teclado (flechas)
+  // Zapping por teclado (flechas y atajo 'C' para habilitar clics de anuncios)
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp" || event.key === "ArrowRight") {
       nextChannel();
     } else if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
       prevChannel();
+    } else if (event.key.toLowerCase() === "c") {
+      // Habilita los clics en el reproductor por 10 segundos para saltar anuncios
+      if (tvPlayerElement) {
+        tvPlayerElement.classList.add("allow-click");
+        console.log("¡Clicks habilitados temporalmente en el reproductor (10s)!");
+        
+        // Temporizador para volver a bloquearlos automáticamente
+        setTimeout(() => {
+          tvPlayerElement.classList.remove("allow-click");
+          console.log("Clicks bloqueados nuevamente.");
+        }, 10000);
+      }
     }
   });
 });
