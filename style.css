@@ -43,6 +43,11 @@ body {
     pointer-events: none; /* Evita que el usuario interactúe directamente con la capa del video, bloqueando tooltips y títulos flotantes */
 }
 
+/* Permite habilitar los clics temporalmente (ideal para interactuar con botones de saltar anuncios) */
+#tv-player.allow-click {
+    pointer-events: auto !important;
+}
+
 #tv-player iframe {
     width: 100% !important;
     height: 100% !important;
@@ -137,8 +142,7 @@ body {
 }
 
 /* Oculta cualquier pantalla superpuesta o grilla de "More videos" que intente mostrar YouTube */
-
 .ytp-pause-overlay,
 .ytp-endscreen-content {
-  display: none !important;
-  }
+    display: none !important;
+}
