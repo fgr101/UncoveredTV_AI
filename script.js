@@ -205,12 +205,18 @@ document.addEventListener("DOMContentLoaded", () => {
   btnNext.addEventListener("click", nextChannel);
   btnPrev.addEventListener("click", prevChannel);
 
-  // Zapping por teclado (flechas)
+  // Zapping por teclado (flechas y tecla R para canal aleatorio)
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp" || event.key === "ArrowRight") {
       nextChannel();
     } else if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
       prevChannel();
+    } else if (event.key.toLowerCase() === "r") {
+      if (channels.length > 0) {
+        const randomIndex = Math.floor(Math.random() * channels.length);
+        loadChannel(randomIndex);
+        console.log("¡Canal al azar sintonizado con la tecla R!");
+      }
     }
   });
 });
