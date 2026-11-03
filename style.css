@@ -40,6 +40,7 @@ body {
     background-color: #000;
     border-radius: 8px;
     overflow: hidden;
+    pointer-events: none; /* Evita que el usuario interactúe directamente con la capa del video, bloqueando tooltips y títulos flotantes */
 }
 
 #tv-player iframe {

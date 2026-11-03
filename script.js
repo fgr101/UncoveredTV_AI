@@ -77,7 +77,7 @@ function initPlayer() {
       startSeconds: startSec
     });
   } else {
-    // Creamos el reproductor por primera vez con los controles ocultos y limpios
+   // Creamos el reproductor por primera vez con los controles y títulos ocultos
     ytPlayer = new YT.Player('tv-player', {
       height: '100%',
       width: '100%',
@@ -86,10 +86,12 @@ function initPlayer() {
         'autoplay': 1,
         'enablejsapi': 1,
         'start': startSec,
-        'controls': 0,        // Oculta los controles de YouTube
-        'disablekb': 1,       // Desactiva atajos de teclado en el video
-        'modestbranding': 1,  // Minimiza el logo de YouTube
-        'iv_load_policy': 3,  // Oculta anotaciones
+        'controls': 0,        // Oculta los controles inferiores
+        'disablekb': 1,       // Desactiva atajos de teclado
+        'modestbranding': 1,  // Minimiza el logo
+        'iv_load_policy': 3,  // Oculta anotaciones y elementos interactivos
+        'showinfo': 0,        // Oculta información del video (según compatibilidad)
+        'fs': 0,              // Oculta el botón de pantalla completa
         'rel': 0
       },
       events: {
