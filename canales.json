@@ -33,5 +33,25 @@
     "id": "rEKifG2XUZg",
     "name": "Canal 6: Tom & Jerry in NY 24/7 [Inglés]",
     "desc": "TOM and JERRY in NY | 24 Hours of Tom & Jerry"
-  }
+  },
+  {	  
+    "id": "yZh3xsFqCt8",
+    "name": "Canal 7: DW Español",
+    "desc": "Noticias internacionales, información económica y reportajes desde Alemania con objetividad para el mundo. En esta plataforma DW Español ofrece también programas y videos sobre salud, medioambiente, economía o historia. Lo que necesitan para estar informados con fuentes fiables y de confianza."
+  },
+  {	  
+    "id": "ArKbAx1K-2U",
+    "name": "Canal 8: A24",
+    "desc": "A24 EN VIVO | Noticias de Argentina y el mundo las 24 horas."
+  },
+  {	  
+    "id": "pykpO5kQJ98",
+    "name": "Canal 9: Euronews",
+    "desc": "Euronews English Live. Watch the latest breaking news available 24/7 on Euronews."
+  },
+  {	  
+    "id": "b4tE5aKhtlg",
+    "name": "Canal 10: RTVE",
+    "desc": "En el canal de RTVE Noticias encontrarás toda la información, las últimas horas y el análisis de las noticias de España y del mundo a través de nuestra red de informativos, corresponsales y formatos propios. Con todos los detalles, el contexto y el análisis de los acontecimientos que te interesan."
+  } 
 ]
