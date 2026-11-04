@@ -10,7 +10,11 @@ const fuentesAnimadas = [
   { id: "lQnMBKcBDbs&t=74s", duracionTotal: 1327 },
   { id: "j9_uXGNky1A", duracionTotal: 11313 },
   { id: "U2oliAFLDwU", duracionTotal: 3636 },
-  { id: "3ZnC4DTshc4", duracionTotal: 2215 }
+  { id: "3ZnC4DTshc4", duracionTotal: 2215 },
+  { id: "9WyEy9Dbrgw", duracionTotal: 662 },
+  { id: "oSiOzmTYSPE", duracionTotal: 1369 },
+  { id: "UheHTqGdV5A", duracionTotal: 1325 }
+  
 ];
 
 // Memoria para el canal aleatorio
