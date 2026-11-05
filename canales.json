@@ -30,43 +30,48 @@
     "desc": "Argentina 12, canal de noticias y periodismo con opinión de Página 12."
   },
   {	  
+    "id": "fy_fYd3ZwPE",
+    "name": "Canal 5: El Chavo del 8 24/7",
+    "desc": "¡Disfruta El Chavo del 8 EN VIVO 24/7! Acompaña a El Chavo, Quico, Don Ramón, La Chilindrina, Doña Florinda, el Profesor Jirafales, el Señor Barriga y todos los personajes de la vecindad en un maratón lleno de momentos divertidos, ocurrencias inolvidables y comedia familiar."
+  },
+  {	  
     "id": "EYDd5U7fQXQ",
-    "name": "Canal 5: Reino Salvaje Y Noche De Pelea Animal 24/7",
+    "name": "Canal 6: Reino Salvaje Y Noche De Pelea Animal 24/7",
     "desc": "EN VIVO: Reino Salvaje Y Noche De Pelea Animal Livestream | Nat Geo en Español"
   },
   {	  
     "id": "rEKifG2XUZg",
-    "name": "Canal 6: Tom & Jerry in NY 24/7 [Inglés]",
+    "name": "Canal 7: Tom & Jerry in NY 24/7 [Inglés]",
     "desc": "TOM and JERRY in NY | 24 Hours of Tom & Jerry"
   },
   {	  
     "id": "yZh3xsFqCt8",
-    "name": "Canal 7: DW Español",
+    "name": "Canal 8: DW Español",
     "desc": "Noticias internacionales, información económica y reportajes desde Alemania con objetividad para el mundo. En esta plataforma DW Español ofrece también programas y videos sobre salud, medioambiente, economía o historia. Lo que necesitan para estar informados con fuentes fiables y de confianza."
   },
   {	  
     "id": "ArKbAx1K-2U",
-    "name": "Canal 8: A24",
+    "name": "Canal 9: A24",
     "desc": "A24 EN VIVO | Noticias de Argentina y el mundo las 24 horas."
   },
   {	  
     "id": "pykpO5kQJ98",
-    "name": "Canal 9: Euronews",
+    "name": "Canal 10: Euronews",
     "desc": "Euronews English Live. Watch the latest breaking news available 24/7 on Euronews."
   },
   {	  
     "id": "b4tE5aKhtlg",
-    "name": "Canal 10: RTVE",
+    "name": "Canal 11: RTVE",
     "desc": "En el canal de RTVE Noticias encontrarás toda la información, las últimas horas y el análisis de las noticias de España y del mundo a través de nuestra red de informativos, corresponsales y formatos propios. Con todos los detalles, el contexto y el análisis de los acontecimientos que te interesan."
   },
     {	  
     "id": "0i7n3r01L2U",
-    "name": "Canal 11: CGTN Live [Inglés]",
+    "name": "Canal 12: CGTN Live [Inglés]",
     "desc": "CGTN is China’s leading 24-hour English-language television channel. We provide global audiences with deeper insights into today’s China while offering a Chinese perspective on international news and current affairs."
   },
   {	  
     "id": "LJgXwC-AKu8",
-    "name": "Canal 12: CGTN Travel [Inglés]",
+    "name": "Canal 13: CGTN China Travel [Inglés]",
     "desc": "LIVE: The 24/7 China Travel Experience."
   }
 ]

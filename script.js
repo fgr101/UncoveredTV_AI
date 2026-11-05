@@ -13,7 +13,13 @@ const fuentesAnimadas = [
   { id: "3ZnC4DTshc4", duracionTotal: 2215 },
   { id: "9WyEy9Dbrgw", duracionTotal: 662 },
   { id: "oSiOzmTYSPE", duracionTotal: 1369 },
-  { id: "UheHTqGdV5A", duracionTotal: 1325 }
+  { id: "UheHTqGdV5A", duracionTotal: 1325 },
+  { id: "7_QLQPI90OY", duracionTotal: 1188 },
+  { id: "8RTMDHCLhZ8", duracionTotal: 905 },
+  { id: "1W2QGaf-R68", duracionTotal: 1368 },
+  { id: "fZkeiSX9rW0", duracionTotal: 1310 },
+  { id: "0PKqa8iWjKk", duracionTotal: 1366 },
+  { id: "Cq_WaMuB3TY", duracionTotal: 660 }  
 ];
 
 // Lista de fuentes para el canal de Música (con tus nuevas fuentes agregadas)
