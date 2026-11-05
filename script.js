@@ -16,7 +16,7 @@ const fuentesAnimadas = [
   { id: "UheHTqGdV5A", duracionTotal: 1325 }
 ];
 
-// Lista de fuentes para el canal de Música (IDs limpios sin parámetros extra de listas)
+// Lista de fuentes para el canal de Música (con tus nuevas fuentes agregadas)
 const fuentesMusica = [
   { id: "0unH11yjklE", duracionTotal: 338 },
   { id: "3g1Tu2Ulrk0", duracionTotal: 321 },
@@ -43,6 +43,7 @@ const channelDesc = document.getElementById("channel-desc");
 const channelListContainer = document.getElementById("channel-list-container");
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
+const btnFullscreen = document.getElementById("btn-fullscreen"); // Referencia al botón de pantalla completa
 
 // Cargar la API de YouTube de forma dinámica si no está cargada
 function loadYouTubeAPI() {
@@ -209,6 +210,19 @@ function prevChannel() {
   loadChannel(prevIndex);
 }
 
+// Función para alternar el modo de pantalla completa
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      console.error(`Error al intentar activar pantalla completa: ${err.message}`);
+    });
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
 // Renderizar dinámicamente los botones en la lista de navegación
 function renderChannelList() {
   channelListContainer.innerHTML = "";
@@ -255,7 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
   btnNext.addEventListener("click", nextChannel);
   btnPrev.addEventListener("click", prevChannel);
 
-  // Zapping por teclado (flechas y tecla R para canal aleatorio)
+  // Evento para el botón de pantalla completa (si existe en el HTML)
+  if (btnFullscreen) {
+    btnFullscreen.addEventListener("click", toggleFullscreen);
+  }
+
+  // Zapping por teclado (flechas, tecla R para canal aleatorio y tecla F para pantalla completa)
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp" || event.key === "ArrowRight") {
       nextChannel();
@@ -267,6 +286,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loadChannel(randomIndex);
         console.log("¡Canal al azar sintonizado con la tecla R!");
       }
+    } else if (event.key.toLowerCase() === "f") {
+      toggleFullscreen();
+      console.log("¡Pantalla completa alternada con la tecla F!");
     }
   });
 });
