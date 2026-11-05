@@ -14,16 +14,25 @@ const fuentesAnimadas = [
   { id: "9WyEy9Dbrgw", duracionTotal: 662 },
   { id: "oSiOzmTYSPE", duracionTotal: 1369 },
   { id: "UheHTqGdV5A", duracionTotal: 1325 }
-  
 ];
 
-// Memoria para el canal aleatorio
+// Lista de fuentes para el canal de Música (IDs limpios sin parámetros extra de listas)
+const fuentesMusica = [
+  { id: "0unH11yjklE", duracionTotal: 338 }
+];
+
+// Memoria para el canal aleatorio de Animadas (Toons)
 let toonsActiveVideo = null;
 let toonsStartTime = null;
 let toonsBaseSecond = 0;
 
+// Memoria para el canal aleatorio de Música
+let musicActiveVideo = null;
+let musicStartTime = null;
+let musicBaseSecond = 0;
+
 let ytPlayer = null; // Instancia del reproductor de la API de YouTube
-let isToonsActive = false; // Bandera para saber si estamos viendo el canal aleatorio
+let activeRandomChannel = null; // Identifica qué canal aleatorio está activo ("TOONS" o "MUSIC")
 
 const channelName = document.getElementById("channel-name");
 const channelDesc = document.getElementById("channel-desc");
@@ -52,9 +61,11 @@ function initPlayer() {
   let videoId = targetChannel.id;
   let startSec = 0;
 
-  isToonsActive = (targetChannel.id === "TOONS_RANDOM");
+  // Identificar el tipo de canal actual
+  activeRandomChannel = null;
 
-  if (isToonsActive) {
+  if (targetChannel.id === "TOONS_RANDOM") {
+    activeRandomChannel = "TOONS";
     const ahora = Date.now();
     
     if (!toonsActiveVideo) {
@@ -72,6 +83,28 @@ function initPlayer() {
       toonsBaseSecond = startSec;
     }
     videoId = toonsActiveVideo.id;
+
+  } else if (targetChannel.id === "MUSIC_RANDOM") {
+    activeRandomChannel = "MUSIC";
+    const ahora = Date.now();
+    
+    if (!musicActiveVideo && fuentesMusica.length > 0) {
+      musicActiveVideo = fuentesMusica[Math.floor(Math.random() * fuentesMusica.length)];
+      musicBaseSecond = Math.floor(Math.random() * musicActiveVideo.duracionTotal);
+      musicStartTime = ahora;
+    }
+
+    if (musicActiveVideo) {
+      const segundosTranscurridos = Math.floor((ahora - musicStartTime) / 1000);
+      startSec = musicBaseSecond + segundosTranscurridos;
+
+      if (startSec >= musicActiveVideo.duracionTotal) {
+        startSec = startSec % musicActiveVideo.duracionTotal;
+        musicStartTime = ahora;
+        musicBaseSecond = startSec;
+      }
+      videoId = musicActiveVideo.id;
+    }
   }
 
   // Si ya existe el reproductor, solo cargamos el nuevo video
@@ -121,19 +154,28 @@ function initPlayer() {
 // Evento que se dispara cuando cambia el estado del video de YouTube
 function onPlayerStateChange(event) {
   // El estado 0 significa que el video terminó (YT.PlayerState.ENDED)
-  if (event.data === 0 && isToonsActive) {
-    console.log("El video de Toons terminó. Pasando al siguiente automáticamente...");
-    
-    // Elegimos un NUEVO video al azar de la lista
-    toonsActiveVideo = fuentesAnimadas[Math.floor(Math.random() * fuentesAnimadas.length)];
-    toonsBaseSecond = 0; // Arranca desde el principio
-    toonsStartTime = Date.now();
+  if (event.data === 0) {
+    if (activeRandomChannel === "TOONS") {
+      console.log("El video de Toons terminó. Pasando al siguiente...");
+      toonsActiveVideo = fuentesAnimadas[Math.floor(Math.random() * fuentesAnimadas.length)];
+      toonsBaseSecond = 0;
+      toonsStartTime = Date.now();
 
-    // Cargamos el nuevo video en el reproductor
-    ytPlayer.loadVideoById({
-      videoId: toonsActiveVideo.id,
-      startSeconds: 0
-    });
+      ytPlayer.loadVideoById({
+        videoId: toonsActiveVideo.id,
+        startSeconds: 0
+      });
+    } else if (activeRandomChannel === "MUSIC" && fuentesMusica.length > 0) {
+      console.log("El tema de Música terminó. Pasando al siguiente...");
+      musicActiveVideo = fuentesMusica[Math.floor(Math.random() * fuentesMusica.length)];
+      musicBaseSecond = 0;
+      musicStartTime = Date.now();
+
+      ytPlayer.loadVideoById({
+        videoId: musicActiveVideo.id,
+        startSeconds: 0
+      });
+    }
   }
 }
 

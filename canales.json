@@ -5,6 +5,11 @@
     "desc": "Canal aleatorio de dibujos animados retro"
   },
   {
+  "id": "MUSIC_RANDOM",
+  "name": "Mi TV Rock",
+  "desc": "Transmisión aleatoria de hits y clips del mejor rock."
+  },
+  {
     "id": "rZtTUCxpPuI",
     "name": "Canal 1: C5N",
     "desc": "Noticias y actualidad 24/7"
