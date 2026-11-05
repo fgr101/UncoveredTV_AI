@@ -196,3 +196,20 @@ body {
     color: #ffffff;
 
 }
+
+/* Forzar que los botones dentro de la botonera inferior estén centrados */
+.controls .channel-btn {
+
+    text-align: center;
+
+}
+
+/* Estilo visual para cuando el botón está activado (Verde brillante) */
+.channel-btn.active-state {
+
+    background-color: #10b981 !important; /* Verde esmeralda brillante */
+    color: #ffffff !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+
+}

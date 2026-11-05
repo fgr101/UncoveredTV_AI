@@ -219,18 +219,35 @@ function prevChannel() {
 
 // Función para alternar el modo de pantalla completa
 function toggleFullscreen() {
+  const elem = document.querySelector(".tv-container") || document.documentElement;
+  
   if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch((err) => {
-      console.error(`Error al intentar activar pantalla completa: ${err.message}`);
-    });
+    const requestMethod = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen;
+    if (requestMethod) {
+      requestMethod.call(elem).catch((err) => {
+        console.error(`Error al intentar activar pantalla completa: ${err.message}`);
+      });
+    }
   } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
+    const exitMethod = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+    if (exitMethod) {
+      exitMethod.call(document);
     }
   }
 }
 
-// Función para alternar los subtítulos
+// Sincronizar el estado visual del botón de pantalla completa (incluso si salen con ESC)
+document.addEventListener("fullscreenchange", () => {
+  if (btnFullscreen) {
+    if (document.fullscreenElement) {
+      btnFullscreen.classList.add("active-state");
+    } else {
+      btnFullscreen.classList.remove("active-state");
+    }
+  }
+});
+
+// Función para alternar los subtítulos con indicador visual en el botón
 function toggleSubtitles() {
   if (!ytPlayer || typeof ytPlayer.loadModule !== 'function') return;
 
@@ -240,12 +257,12 @@ function toggleSubtitles() {
     ytPlayer.loadModule("captions");
     ytPlayer.setOption("captions", "track", { languageCode: "es" });
     console.log("Subtítulos activados en español.");
-    if (btnSubtitles) btnSubtitles.textContent = "Subtítulos: ON";
+    if (btnSubtitles) btnSubtitles.classList.add("active-state");
   } else {
     ytPlayer.loadModule("captions");
     ytPlayer.setOption("captions", "track", {}); 
     console.log("Subtítulos desactivados.");
-    if (btnSubtitles) btnSubtitles.textContent = "Subtítulos (S)";
+    if (btnSubtitles) btnSubtitles.classList.remove("active-state");
   }
 }
 
