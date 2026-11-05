@@ -1,6 +1,5 @@
 /* Estilos generales */
 body {
-    
     background-color: #121212;
     color: #e0e0e0;
     font-family: sans-serif;
@@ -11,7 +10,6 @@ body {
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
-
 }
 
 /* Contenedor principal de la televisión */
@@ -28,7 +26,7 @@ body {
     align-items: start;
 }
 
-/* Nuevo: Asegurar que cuando esté en pantalla completa se vea proporcionado y sin recortes raros */
+/* Pantalla completa proporcional */
 .tv-container:fullscreen {
     width: 100vw;
     height: 100vh;
@@ -37,79 +35,63 @@ body {
     padding: 30px;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 3fr 1fr; /* Da más aire al reproductor en pantallas grandes */
+    grid-template-columns: 3fr 1fr;
     align-content: center;
     justify-content: center;
 }
 
 /* Columna Izquierda */
 .tv-left-column {
-
     display: flex;
     flex-direction: column;
-
 }
 
 /* Reproductor de YouTube */
 #tv-player {
-
     width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
     background-color: #000;
     border-radius: 8px;
     overflow: hidden;
-    /* El mouse vuelve a funcionar con total normalidad */
-
 }
 
 #tv-player iframe {
-
     width: 100% !important;
     height: 100% !important;
     position: absolute;
     top: 0;
     left: 0;
     border: none;
-
 }
 
 /* Información del canal */
 .tv-info {
-
     margin-top: 15px;
-
 }
 
 .tv-info h2 {
-
     margin: 0 0 5px 0;
     font-size: 1.3rem;
     color: #ffffff;
-
 }
 
 .tv-info p {
-
     margin: 0;
     color: #aaaaaa;
     font-size: 0.9rem;
-
 }
 
 /* Columna Derecha (Lista + Botones abajo) */
 .tv-right-column {
-
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-
 }
 
 /* Lista de canales */
 #channel-list-container {
-
     list-style: none;
     padding: 0;
     margin: 0 0 15px 0;
@@ -118,11 +100,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-
 }
 
 .channel-btn {
-
     width: 100%;
     text-align: left;
     background-color: #2a2a2a;
@@ -133,37 +113,28 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s;
-
 }
 
 .channel-btn:hover {
-
     background-color: #383838;
     color: #fff;
-
 }
 
 .channel-btn.active {
-
     background-color: #4f46e5;
     color: #fff;
     font-weight: bold;
-
 }
 
-/* Botones CH+ y CH- abajo a la derecha */
-
+/* Botones de control inferiores (CH-, CH+, Pantalla Completa, Subtítulos) */
 .controls {
-    
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-
 }
 
-.controls button {
-
-    flex: 1;
+.controls .channel-btn {
+    text-align: center;
     background-color: #2a2a2a;
     color: #fff;
     border: none;
@@ -172,56 +143,39 @@ body {
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s;
-
+    transition: all 0.2s;
 }
 
-.controls button:hover {
-
+.controls .channel-btn:hover {
     background-color: #383838;
 }
 
-/* Oculta cualquier pantalla superpuesta o grilla de "More videos" que intente mostrar YouTube */
+/* Oculta pantallas superpuestas de YouTube */
 .ytp-pause-overlay,
 .ytp-endscreen-content {
-
     display: none !important;
-
 }
 
 /* Cartel de aviso sobre AdBlock / YouTube Premium */
 .tv-notice {
-
     margin-top: 15px;
     padding: 10px 14px;
     background-color: #262626;
-    border-left: 4px solid #4f46e5; /* Detalle de color haciendo juego con el canal activo */
+    border-left: 4px solid #4f46e5;
     border-radius: 6px;
     font-size: 0.85rem;
     color: #b0b0b0;
     line-height: 1.4;
-
 }
 
 .tv-notice strong {
-
     color: #ffffff;
-
 }
 
-/* Forzar que los botones dentro de la botonera inferior estén centrados */
-.controls .channel-btn {
-
-    text-align: center;
-
-}
-
-/* Estilo visual para cuando el botón está activado (Verde brillante) */
+/* Estilo visual para cuando el botón está activado / recibe destello (Verde esmeralda brillante) */
 .channel-btn.active-state {
-
-    background-color: #10b981 !important; /* Verde esmeralda brillante */
+    background-color: #10b981 !important;
     color: #ffffff !important;
     font-weight: bold;
     box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
-
 }
