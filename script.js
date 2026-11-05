@@ -78,7 +78,7 @@ function initPlayer() {
     if (!toonsActiveVideo) {
       toonsActiveVideo = fuentesAnimadas[Math.floor(Math.random() * fuentesAnimadas.length)];
       toonsBaseSecond = Math.floor(Math.random() * toonsActiveVideo.duracionTotal);
-      toonsStartTime = meahora = ahora;
+      toonsStartTime = ahora; // <-- Corregido aquí
     }
 
     const segundosTranscurridos = Math.floor((ahora - toonsStartTime) / 1000);
@@ -153,4 +153,209 @@ function initPlayer() {
   }
 
   // Actualizar información en pantalla
-  channelName.textContent = targetChannel.name
+  channelName.textContent = targetChannel.name;
+  channelDesc.textContent = targetChannel.desc;
+
+  // Actualizar clase activa en la lista de botones
+  const channelButtons = document.querySelectorAll(".channel-btn");
+  channelButtons.forEach((btn, i) => {
+    btn.classList.toggle("active", i === currentChannelIndex);
+  });
+}
+
+// Evento que se dispara cuando cambia el estado del video de YouTube
+function onPlayerStateChange(event) {
+  // El estado 0 significa que el video terminó (YT.PlayerState.ENDED)
+  if (event.data === 0) {
+    if (activeRandomChannel === "TOONS") {
+      console.log("El video de Toons terminó. Pasando al siguiente...");
+      toonsActiveVideo = fuentesAnimadas[Math.floor(Math.random() * fuentesAnimadas.length)];
+      toonsBaseSecond = 0;
+      toonsStartTime = Date.now();
+
+      ytPlayer.loadVideoById({
+        videoId: toonsActiveVideo.id,
+        startSeconds: 0
+      });
+    } else if (activeRandomChannel === "MUSIC" && fuentesMusica.length > 0) {
+      console.log("El tema de Música terminó. Pasando al siguiente...");
+      musicActiveVideo = fuentesMusica[Math.floor(Math.random() * fuentesMusica.length)];
+      musicBaseSecond = 0;
+      musicStartTime = Date.now();
+
+      ytPlayer.loadVideoById({
+        videoId: musicActiveVideo.id,
+        startSeconds: 0
+      });
+    }
+  }
+}
+
+// Cargar canal según el índice
+function loadChannel(index) {
+  if (channels.length === 0) return;
+  currentChannelIndex = index;
+
+  // Si la API ya está lista, reutilizamos el reproductor
+  if (window.YT && window.YT.Player && ytPlayer) {
+    initPlayer();
+  } else {
+    // Si recién arranca la app, cargamos la API
+    loadYouTubeAPI();
+  }
+}
+
+// Función auxiliar para generar destello verde momentáneo en los botones CH+ / CH-
+function flashButton(buttonElement) {
+  if (!buttonElement) return;
+  buttonElement.classList.add("active-state");
+  setTimeout(() => {
+    buttonElement.classList.remove("active-state");
+  }, 150);
+}
+
+function nextChannel() {
+  if (channels.length === 0) return;
+  flashButton(btnNext);
+  let nextIndex = (currentChannelIndex + 1) % channels.length;
+  loadChannel(nextIndex);
+}
+
+function prevChannel() {
+  if (channels.length === 0) return;
+  flashButton(btnPrev);
+  let prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
+  loadChannel(prevIndex);
+}
+
+// Función para alternar el modo de pantalla completa
+function toggleFullscreen() {
+  const elem = document.querySelector(".tv-container") || document.documentElement;
+  
+  if (!document.fullscreenElement) {
+    const requestMethod = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen;
+    if (requestMethod) {
+      requestMethod.call(elem).catch((err) => {
+        console.error(`Error al intentar activar pantalla completa: ${err.message}`);
+      });
+    }
+  } else {
+    const exitMethod = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+    if (exitMethod) {
+      exitMethod.call(document);
+    }
+  }
+}
+
+// Sincronizar el estado visual del botón de pantalla completa (incluso si salen con ESC)
+document.addEventListener("fullscreenchange", () => {
+  if (btnFullscreen) {
+    if (document.fullscreenElement) {
+      btnFullscreen.classList.add("active-state");
+    } else {
+      btnFullscreen.classList.remove("active-state");
+    }
+  }
+});
+
+// Función para alternar los subtítulos con indicador visual en el botón
+function toggleSubtitles() {
+  if (!ytPlayer || typeof ytPlayer.loadModule !== 'function') return;
+
+  subtitlesEnabled = !subtitlesEnabled;
+
+  if (subtitlesEnabled) {
+    ytPlayer.loadModule("captions");
+    ytPlayer.setOption("captions", "track", { languageCode: "es" });
+    console.log("Subtítulos activados en español.");
+    if (btnSubtitles) btnSubtitles.classList.add("active-state");
+  } else {
+    ytPlayer.loadModule("captions");
+    ytPlayer.setOption("captions", "track", {}); 
+    console.log("Subtítulos desactivados.");
+    if (btnSubtitles) btnSubtitles.classList.remove("active-state");
+  }
+}
+
+// Renderizar dinámicamente los botones en la lista de navegación
+function renderChannelList() {
+  channelListContainer.innerHTML = "";
+
+  channels.forEach((channel, index) => {
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    
+    button.classList.add("channel-btn");
+    button.textContent = channel.name;
+    button.addEventListener("click", () => loadChannel(index));
+
+    li.appendChild(button);
+    channelListContainer.appendChild(li);
+  });
+}
+
+// Obtener datos desde el archivo externo JSON
+async function initApp() {
+  try {
+    const response = await fetch("canales.json");
+    if (!response.ok) {
+      throw new Error(`Error al cargar canales: ${response.status}`);
+    }
+    channels = await response.json();
+
+    if (channels.length > 0) {
+      renderChannelList();
+      loadChannel(0); // Cargar el primer canal por defecto
+    } else {
+      channelName.textContent = "No hay canales disponibles";
+    }
+  } catch (error) {
+    console.error("Error al inicializar la lista de canales:", error);
+    channelName.textContent = "Error al cargar canales";
+    channelDesc.textContent = "Verifica que el archivo canales.json exista y sea válido.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initApp();
+
+  // Controles de botones físicos / interfaz
+  btnNext.addEventListener("click", nextChannel);
+  btnPrev.addEventListener("click", prevChannel);
+
+  // Evento para el botón de pantalla completa
+  if (btnFullscreen) {
+    btnFullscreen.addEventListener("click", toggleFullscreen);
+  }
+
+  // Evento para el botón de subtítulos
+  if (btnSubtitles) {
+    btnSubtitles.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleSubtitles();
+    });
+  }
+
+  // Zapping por teclado (flechas, R para canal aleatorio, F para pantalla completa, S para subtítulos)
+  document.addEventListener("keydown", (event) => {
+    if (event.target.tagName === 'INPUT') return;
+
+    if (event.key === "ArrowUp" || event.key === "ArrowRight") {
+      nextChannel();
+    } else if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
+      prevChannel();
+    } else if (event.key.toLowerCase() === "r") {
+      if (channels.length > 0) {
+        const randomIndex = Math.floor(Math.random() * channels.length);
+        loadChannel(randomIndex);
+        console.log("¡Canal al azar sintonizado con la tecla R!");
+      }
+    } else if (event.key.toLowerCase() === "f") {
+      toggleFullscreen();
+      console.log("¡Pantalla completa alternada con la tecla F!");
+    } else if (event.key.toLowerCase() === "s") {
+      toggleSubtitles();
+      console.log("¡Subtítulos alternados con la tecla S!");
+    }
+  });
+});
