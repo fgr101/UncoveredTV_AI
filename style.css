@@ -1,5 +1,6 @@
 /* Estilos generales */
 body {
+    
     background-color: #121212;
     color: #e0e0e0;
     font-family: sans-serif;
@@ -10,10 +11,12 @@ body {
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
+
 }
 
 /* Contenedor principal de la televisión */
 .tv-container {
+
     width: 100%;
     max-width: 1200px;
     display: grid;
@@ -24,16 +27,20 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     align-items: start;
+
 }
 
 /* Columna Izquierda */
 .tv-left-column {
+
     display: flex;
     flex-direction: column;
+
 }
 
 /* Reproductor de YouTube */
 #tv-player {
+
     width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
@@ -41,44 +48,56 @@ body {
     border-radius: 8px;
     overflow: hidden;
     /* El mouse vuelve a funcionar con total normalidad */
+
 }
 
 #tv-player iframe {
+
     width: 100% !important;
     height: 100% !important;
     position: absolute;
     top: 0;
     left: 0;
     border: none;
+
 }
 
 /* Información del canal */
 .tv-info {
+
     margin-top: 15px;
+
 }
 
 .tv-info h2 {
+
     margin: 0 0 5px 0;
     font-size: 1.3rem;
     color: #ffffff;
+
 }
 
 .tv-info p {
+
     margin: 0;
     color: #aaaaaa;
     font-size: 0.9rem;
+
 }
 
 /* Columna Derecha (Lista + Botones abajo) */
 .tv-right-column {
+
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
+
 }
 
 /* Lista de canales */
 #channel-list-container {
+
     list-style: none;
     padding: 0;
     margin: 0 0 15px 0;
@@ -87,9 +106,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
 }
 
 .channel-btn {
+
     width: 100%;
     text-align: left;
     background-color: #2a2a2a;
@@ -100,26 +121,36 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s;
+
 }
 
 .channel-btn:hover {
+
     background-color: #383838;
     color: #fff;
+
 }
 
 .channel-btn.active {
+
     background-color: #4f46e5;
     color: #fff;
     font-weight: bold;
+
 }
 
 /* Botones CH+ y CH- abajo a la derecha */
+
 .controls {
-    display: flex;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
+
 }
 
 .controls button {
+
     flex: 1;
     background-color: #2a2a2a;
     color: #fff;
@@ -130,20 +161,25 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s;
+
 }
 
 .controls button:hover {
+
     background-color: #383838;
 }
 
 /* Oculta cualquier pantalla superpuesta o grilla de "More videos" que intente mostrar YouTube */
 .ytp-pause-overlay,
 .ytp-endscreen-content {
+
     display: none !important;
+
 }
 
 /* Cartel de aviso sobre AdBlock / YouTube Premium */
 .tv-notice {
+
     margin-top: 15px;
     padding: 10px 14px;
     background-color: #262626;
@@ -152,8 +188,11 @@ body {
     font-size: 0.85rem;
     color: #b0b0b0;
     line-height: 1.4;
+
 }
 
 .tv-notice strong {
+
     color: #ffffff;
+
 }

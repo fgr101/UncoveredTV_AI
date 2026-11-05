@@ -37,6 +37,7 @@ let musicBaseSecond = 0;
 
 let ytPlayer = null; // Instancia del reproductor de la API de YouTube
 let activeRandomChannel = null; // Identifica qué canal aleatorio está activo ("TOONS" o "MUSIC")
+let subtitlesEnabled = false;   // Estado de los subtítulos
 
 const channelName = document.getElementById("channel-name");
 const channelDesc = document.getElementById("channel-desc");
@@ -44,6 +45,7 @@ const channelListContainer = document.getElementById("channel-list-container");
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 const btnFullscreen = document.getElementById("btn-fullscreen"); // Referencia al botón de pantalla completa
+const btnSubtitles = document.getElementById("btn-subtitles");   // Referencia al botón de subtítulos
 
 // Cargar la API de YouTube de forma dinámica si no está cargada
 function loadYouTubeAPI() {
@@ -139,6 +141,11 @@ function initPlayer() {
       events: {
         'onReady': (event) => {
           event.target.playVideo();
+          // Aplicar subtítulos por defecto si ya estaban activados
+          if (subtitlesEnabled && typeof ytPlayer.loadModule === 'function') {
+            ytPlayer.loadModule("captions");
+            ytPlayer.setOption("captions", "track", { languageCode: "es" });
+          }
         },
         'onStateChange': onPlayerStateChange
       }
@@ -223,6 +230,25 @@ function toggleFullscreen() {
   }
 }
 
+// Función para alternar los subtítulos
+function toggleSubtitles() {
+  if (!ytPlayer || typeof ytPlayer.loadModule !== 'function') return;
+
+  subtitlesEnabled = !subtitlesEnabled;
+
+  if (subtitlesEnabled) {
+    ytPlayer.loadModule("captions");
+    ytPlayer.setOption("captions", "track", { languageCode: "es" });
+    console.log("Subtítulos activados en español.");
+    if (btnSubtitles) btnSubtitles.textContent = "Subtítulos: ON";
+  } else {
+    ytPlayer.loadModule("captions");
+    ytPlayer.setOption("captions", "track", {}); 
+    console.log("Subtítulos desactivados.");
+    if (btnSubtitles) btnSubtitles.textContent = "Subtítulos (S)";
+  }
+}
+
 // Renderizar dinámicamente los botones en la lista de navegación
 function renderChannelList() {
   channelListContainer.innerHTML = "";
@@ -269,13 +295,23 @@ document.addEventListener("DOMContentLoaded", () => {
   btnNext.addEventListener("click", nextChannel);
   btnPrev.addEventListener("click", prevChannel);
 
-  // Evento para el botón de pantalla completa (si existe en el HTML)
+  // Evento para el botón de pantalla completa
   if (btnFullscreen) {
     btnFullscreen.addEventListener("click", toggleFullscreen);
   }
 
-  // Zapping por teclado (flechas, tecla R para canal aleatorio y tecla F para pantalla completa)
+  // Evento para el botón de subtítulos
+  if (btnSubtitles) {
+    btnSubtitles.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleSubtitles();
+    });
+  }
+
+  // Zapping por teclado (flechas, R para canal aleatorio, F para pantalla completa, S para subtítulos)
   document.addEventListener("keydown", (event) => {
+    if (event.target.tagName === 'INPUT') return;
+
     if (event.key === "ArrowUp" || event.key === "ArrowRight") {
       nextChannel();
     } else if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
@@ -289,6 +325,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (event.key.toLowerCase() === "f") {
       toggleFullscreen();
       console.log("¡Pantalla completa alternada con la tecla F!");
+    } else if (event.key.toLowerCase() === "s") {
+      toggleSubtitles();
+      console.log("¡Subtítulos alternados con la tecla S!");
     }
   });
 });
