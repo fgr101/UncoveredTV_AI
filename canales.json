@@ -58,5 +58,15 @@
     "id": "b4tE5aKhtlg",
     "name": "Canal 10: RTVE",
     "desc": "En el canal de RTVE Noticias encontrarás toda la información, las últimas horas y el análisis de las noticias de España y del mundo a través de nuestra red de informativos, corresponsales y formatos propios. Con todos los detalles, el contexto y el análisis de los acontecimientos que te interesan."
-  } 
+  },
+    {	  
+    "id": "0i7n3r01L2U",
+    "name": "Canal 11: CGTN Live [Inglés]",
+    "desc": "CGTN is China’s leading 24-hour English-language television channel. We provide global audiences with deeper insights into today’s China while offering a Chinese perspective on international news and current affairs."
+  },
+  {	  
+    "id": "LJgXwC-AKu8",
+    "name": "Canal 12: CGTN Travel [Inglés]",
+    "desc": "LIVE: The 24/7 China Travel Experience."
+  }
 ]
