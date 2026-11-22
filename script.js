@@ -24,11 +24,15 @@ const fuentesAnimadas = [
 
 // Lista de fuentes para el canal de Música (con tus nuevas fuentes agregadas)
 const fuentesMusica = [
+
   { id: "0unH11yjklE", duracionTotal: 338 },
   { id: "3g1Tu2Ulrk0", duracionTotal: 321 },
   { id: "OgeR2oqZGTs", duracionTotal: 258 },
   { id: "09839DpTctU", duracionTotal: 404 },
-  { id: "vbvyNnw8Qjg", duracionTotal: 144 }
+  { id: "vbvyNnw8Qjg", duracionTotal: 144 },
+  { id: "h0ffIJ7ZO4U", duracionTotal: 266 },
+  { id: "xwtdhWltSIg", duracionTotal: 293 }
+
 ];
 
 // Memoria para el canal aleatorio de Animadas (Toons)

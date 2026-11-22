@@ -20,58 +20,63 @@
     "desc": "Noticias y cobertura en vivo"
   },
   {
+    "id": "cb12KmMMDJA",
+    "name": "Canal 3: TN",
+    "desc": "Todo Noticias. Mirá la programación de Todo Noticias durante las 24hs del día en la Argentina y en el mundo."
+  },
+  {
     "id": "zx9lNsN4YNs",
-    "name": "Canal 3: Canal 22",
+    "name": "Canal 4: Canal 22",
     "desc": "Transmisión en vivo de Canal 22. Primer canal de televisión de internet de la Argentina."
   },
   {
     "id": "21UP3XoRIBU",
-    "name": "Canal 4: AR|12",
+    "name": "Canal 5: AR|12",
     "desc": "Argentina 12, canal de noticias y periodismo con opinión de Página 12."
   },
   {	  
     "id": "fy_fYd3ZwPE",
-    "name": "Canal 5: El Chavo del 8 24/7",
+    "name": "Canal 6: El Chavo del 8 24/7",
     "desc": "¡Disfruta El Chavo del 8 EN VIVO 24/7! Acompaña a El Chavo, Quico, Don Ramón, La Chilindrina, Doña Florinda, el Profesor Jirafales, el Señor Barriga y todos los personajes de la vecindad en un maratón lleno de momentos divertidos, ocurrencias inolvidables y comedia familiar."
   },
   {	  
     "id": "EYDd5U7fQXQ",
-    "name": "Canal 6: Reino Salvaje Y Noche De Pelea Animal 24/7",
+    "name": "Canal 7: Reino Salvaje Y Noche De Pelea Animal 24/7",
     "desc": "EN VIVO: Reino Salvaje Y Noche De Pelea Animal Livestream | Nat Geo en Español"
   },
   {	  
     "id": "rEKifG2XUZg",
-    "name": "Canal 7: Tom & Jerry in NY 24/7 [Inglés]",
+    "name": "Canal 8: Tom & Jerry in NY 24/7 [Inglés]",
     "desc": "TOM and JERRY in NY | 24 Hours of Tom & Jerry"
   },
   {	  
     "id": "yZh3xsFqCt8",
-    "name": "Canal 8: DW Español",
+    "name": "Canal 9: DW Español",
     "desc": "Noticias internacionales, información económica y reportajes desde Alemania con objetividad para el mundo. En esta plataforma DW Español ofrece también programas y videos sobre salud, medioambiente, economía o historia. Lo que necesitan para estar informados con fuentes fiables y de confianza."
   },
   {	  
     "id": "ArKbAx1K-2U",
-    "name": "Canal 9: A24",
+    "name": "Canal 10: A24",
     "desc": "A24 EN VIVO | Noticias de Argentina y el mundo las 24 horas."
   },
   {	  
     "id": "pykpO5kQJ98",
-    "name": "Canal 10: Euronews",
+    "name": "Canal 11: Euronews",
     "desc": "Euronews English Live. Watch the latest breaking news available 24/7 on Euronews."
   },
   {	  
     "id": "b4tE5aKhtlg",
-    "name": "Canal 11: RTVE",
+    "name": "Canal 12: RTVE",
     "desc": "En el canal de RTVE Noticias encontrarás toda la información, las últimas horas y el análisis de las noticias de España y del mundo a través de nuestra red de informativos, corresponsales y formatos propios. Con todos los detalles, el contexto y el análisis de los acontecimientos que te interesan."
   },
     {	  
     "id": "0i7n3r01L2U",
-    "name": "Canal 12: CGTN Live [Inglés]",
+    "name": "Canal 13: CGTN Live [Inglés]",
     "desc": "CGTN is China’s leading 24-hour English-language television channel. We provide global audiences with deeper insights into today’s China while offering a Chinese perspective on international news and current affairs."
   },
   {	  
     "id": "LJgXwC-AKu8",
-    "name": "Canal 13: CGTN China Travel [Inglés]",
+    "name": "Canal 14: CGTN China Travel [Inglés]",
     "desc": "LIVE: The 24/7 China Travel Experience."
   }
 ]
